@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📺Live-Page</title>
+    <!-- Setting live.css as the stylesheet for this page  -->
+    <link rel="stylesheet" href="live.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- This class contains the Title, Display, Batting Table, Bowler Section, controls and View ScoreCard buttons -->
+    <div class="live-container">
+
+        <header><h1 id="match-title">Live Match</h1></header>
+        <br>
+
+        <!-- This class is used to show an aesthetic Display Screen -->
+        <div class="display">
+            <h2 id="score-display">This is the Display</h2>
+        </div>
+        <br><br><br>
+
+        <!-- This class contains the 2 tables that show the batters and bowler's info-->
+        <div class="match-content">
+
+            <div class="batters-table">
+                <table id="batters-table">
+                    <thead>
+                        <tr>
+                            <th>Batsman</th>
+                            <th>R</th>
+                            <th>B</th>
+                            <th>4s</th>
+                            <th>6s</th>
+                            <th>SR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Batters Data -->
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="bowlers-table">
+                <table id="bowling-table">
+                    <thead>
+                        <tr>
+                            <th>Bowler</th>
+                            <th>O</th>
+                            <th>M</th>
+                            <th>R</th>
+                            <th>W</th>
+                            <th>ER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Bowler's Data -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <br>
+
+        <!-- This class contains all the control buttons and the View ScoreCard Button -->
+        <div class="control-buttons">
+
+            <div class="run-btns">
+                <button class="run-btn" data-runs="0">0</button>
+                <button class="run-btn" data-runs="1">1</button>
+                <button class="run-btn" data-runs="2">2</button>
+                <button class="run-btn" data-runs="3">3</button>
+                <button class="run-btn" data-runs="4">4</button>
+                <button class="run-btn" data-runs="6">6</button>
+            </div>
+
+            <div class="other-btns">
+                <button id="wicket-btn">Wicket</button>
+                <button id="wide-btn">Wide</button>
+                <button id="noBall-btn">No Ball</button>
+                <button id="runOut-btn">Run Out</button>
+            </div>
+
+        </div>
+        <br>
+        
+        <!-- This class contains the CRR, RRR and Current Over Data -->
+        <div class="match-info">
+            <div id="crr-and-rrr">
+                <!-- CRR and RRR Data -->
+            </div>
+            <div id="current-over-data">
+                <!-- Current Over Data -->
+            </div>
+        </div>
+
+        <!-- This class contains the button which redirects to scorecard.html -->
+        <div class="navigation">
+            <button id="scorecard-btn">View Scorecard</button>
+        </div>
+
+        <!-- This is a modal that appears before the match starts, it has the input boxes for the batter and bowler names initially -->
+        <div id="name-prompt-modal" class="modal">
+
+            <div class="modal-content">
+                <h3 id="modal-title">Enter Player Names</h3>
+                <div id="name-inputs">
+                    <!-- Input fields will be added here -->
+                </div>
+                <button id="submit-names">Submit</button>
+            </div>
+
+        </div>
+
+        <div class="custom-modal" id="message-modal">
+
+            <div class="custom_modal-content">
+                <h3 id="custom_modal-title">
+                    <!-- Title will be added here -->
+                </h3>
+                <p id="custom_modal-message">
+                    <!-- Message will be added here -->
+                </p>
+                <button id="continue">Continue</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+    <!-- Assigning score.js as the file which contains the JS Logic for this page -->
+    <script src="score.js"></script>
+
+</body>
+</html>

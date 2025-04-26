@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Summary | Cricket Scorekeeper</title>
+    <link rel="stylesheet" href="css/base_styles.css">
+    <link rel="stylesheet" href="css/summary.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Howzatt! Cricket Scorekeeper</h1>
+            <h2>Match Summary</h2>
+        </header>
+
+        <div class="card">
+            <div id="result-display">
+                <!-- Match result will be displayed here -->
+            </div>
+            
+            <div class="score-summary">
+                <div id="team1-summary"></div>
+                <div id="team2-summary"></div>
+            </div>
+            
+            <div id="man-of-the-match">
+                <!-- Man of the match will be displayed here -->
+            </div>
+        </div>
+
+        <div class="match-actions">
+            <button id="new-match-btn" class="btn-success">Start New Match</button>
+            <button id="reset-all-btn" class="btn-danger">Reset All Data</button>
+            <button id="view-scorecard-btn">View Scorecard</button>
+        </div>
+    </div>
+
+    <script src="js/summary.js"></script>
+</body>
+</html>

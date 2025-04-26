@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorecard</title>
+    <!-- Setting scorecard.css as the stylesheet for this page  -->
+    <link rel="stylesheet" href="scorecard.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- This class contains the '← Back' button, batsman and bowler score-tables  -->
+        <div class="scorecard-container">
+            <div class="header-box">
+                <header><h1 id="scorecard-title">Match Scorecard</h1></header>
+                <!-- This button calls the function that goes back to Live Page -->
+                <button onclick="goBack()" id="ReturnBtnScoreCard">← Back</button>
+            </div>
+            
+            <!-- This div is for the hidden commentary popup that appears when hovering on the player's name -->
+            <div id="commentary-popup" class="hidden-commentary"></div>
+
+            <div class="table-section">
+                <h2>Batting Scorecard</h2>
+                <table id="batting-scorecard">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Runs</th>
+                            <th>Balls</th>
+                            <th>4s</th>
+                            <th>6s</th>
+                            <th>Strike Rate</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- Batters Scorecard -->
+                    </tbody>
+                </table>
+
+                <h2>Bowling Scorecard</h2>
+                <table id="bowling-scorecard">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Overs</th>
+                            <th>Maidens</th>
+                            <th>Runs</th>
+                            <th>Wickets</th>
+                            <th>Economy</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- Bowlers Scorecard -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <!-- Assigning score.js as the file which contains the JS Logic for this page -->
+    <script src="score.js"></script>
+
+    <!-- This inline script is to call the function: loadScorecard(), when the page has loaded -->
+    <script>
+        window.addEventListener('DOMContentLoaded', loadScorecard);
+    </script>
+</body>
+</html>

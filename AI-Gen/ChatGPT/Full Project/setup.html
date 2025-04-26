@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Setup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Match Setup</h1>
+        <label>Team 1:</label>
+        <input type="text" id="team1" placeholder="Enter Team 1" required>
+        <label>Team 2:</label>
+        <input type="text" id="team2" placeholder="Enter Team 2" required>
+        <label>Players (comma-separated):</label>
+        <input type="text" id="players" placeholder="Player1, Player2, ..." required>
+        <label>Bowler:</label>
+        <input type="text" id="bowler" placeholder="Bowler Name" required>
+        <button onclick="startMatch()">Start Match</button>
+    </div>
+    <script src="setup.js"></script>
+</body>
+</html>

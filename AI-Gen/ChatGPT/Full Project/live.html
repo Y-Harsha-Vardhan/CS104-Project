@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Match</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="match-title">Live Match</h1>
+        <h2 id="score-display">0/0 (0.0)</h2>
+        <div class="controls">
+            <button onclick="updateScore(0)">0</button>
+            <button onclick="updateScore(1)">1</button>
+            <button onclick="updateScore(2)">2</button>
+            <button onclick="updateScore(3)">3</button>
+            <button onclick="updateScore(4)">4</button>
+            <button onclick="updateScore(6)">6</button>
+            <button onclick="registerWicket()">Wicket</button>
+        </div>
+        <button onclick="viewScorecard()">View Scorecard</button>
+    </div>
+    <script src="live.js"></script>
+</body>
+</html>

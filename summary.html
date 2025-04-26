@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📃Summary</title>
+    <!-- Setting live.css as the stylesheet for this page -->
+    <link rel="stylesheet" href="summary.css">
+</head>
+<body>
+    <!-- This class is used as a wrapper to keep a margin between the top, bottom of the page and container always -->
+    <div class="wrapper">
+
+        <!-- This class contains displays the result and a button to reset everything -->
+        <div class="summary-container">
+
+            <header><h1 id="summary-title">The Match has Ended</h1></header>
+            <br>
+
+            <!-- This class is used to show an aesthetic Result screen -->
+            <div class="result">
+                <h2 id="match-result">This is the Result</h2>
+            </div>
+            <br><br><br>
+
+            <!-- This class contains the match-reset and view-scorecard buttons -->
+            <div class="btns">
+                <button id="reset-btn">Reset Match</button>
+                <button id="scorecard-btn">View Scorecard</button>
+            </div>
+
+            <div id="reset-modal">
+                <div>
+                    <h3>Start New Match?</h3>
+                    <p>This will clear all current data.</p>
+                    <div class="modal-btns">
+                        <button id="reset-cancel">Cancel</button>
+                        <button id="reset-confirm">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Assigning script.js as the sorce for the JS logic of this page -->
+    <script src="score.js"></script>
+    
+    <!-- The below script is a small initialization for the functions that will be called in this page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMatchData();
+            displayResult();
+            setupSummaryPage();
+        });
+    </script>
+
+</body>
+</html>

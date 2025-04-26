@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorecard | Cricket Scorekeeper</title>
+    <link rel="stylesheet" href="css/base_styles.css">
+    <link rel="stylesheet" href="css/scorecard.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Howzatt! Cricket Scorekeeper</h1>
+            <h2>Match Scorecard</h2>
+        </header>
+
+        <div class="match-header card">
+            <h3 id="scorecard-title">Match Title</h3>
+            <div id="scorecard-score-display">
+                <!-- Match summary will be displayed here -->
+            </div>
+        </div>
+
+        <div class="scorecard-content">
+            <div class="card">
+                <h3>Batting Scorecard</h3>
+                <table id="batting-scorecard">
+                    <thead>
+                        <tr>
+                            <th>Batter</th>
+                            <th>R</th>
+                            <th>B</th>
+                            <th>4s</th>
+                            <th>6s</th>
+                            <th>SR</th>
+                            <th>How Out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Batting data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Bowling Scorecard</h3>
+                <table id="bowling-scorecard">
+                    <thead>
+                        <tr>
+                            <th>Bowler</th>
+                            <th>O</th>
+                            <th>M</th>
+                            <th>R</th>
+                            <th>W</th>
+                            <th>ER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Bowling data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Extras</h3>
+                <div id="scorecard-extras">
+                    <!-- Extras breakdown will be displayed here -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Fall of Wickets</h3>
+                <div id="fall-of-wickets">
+                    <!-- Wicket fall will be displayed here -->
+                </div>
+            </div>
+
+            <div class="card commentary-section">
+                <h3>Commentary</h3>
+                <div id="scorecard-commentary">
+                    <!-- Commentary will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button id="back-to-live" class="btn-success">Back to Live</button>
+            <button id="view-summary">View Match Summary</button>
+        </div>
+    </div>
+
+    <script src="js/scorecard.js"></script>
+</body>
+</html>

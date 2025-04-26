@@ -1,0 +1,277 @@
+/* This is live.css, it contains all the styles related to the live.html page */
+
+/* Importing fonts for the text */
+
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Oswald */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* Using an image as background and aligning the position of content in center */
+/* Since the container seems to get larger when the data of the batsmen and bowler are added, removed the overflow: hidden */
+html, body {
+    overscroll-behavior: none;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("Images/Bat-Ball-Helmet.jpg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    min-height: 100vh;
+    padding: 50px 50px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Using padding to make the container spacious */
+/* Made it curved rectangle using border-radius property */
+.live-container {
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #000;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    margin: auto auto;
+}
+
+/* Using Oswald Font for: 'Live Match' heading */
+h1 {
+    color: #333;
+    font-family: "Oswald",sans-serif;
+    word-spacing: 6px;
+}
+
+/* Using Montserrat font for: 'Display' */
+h2 {
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    word-spacing: 6px;
+    margin: 10px 0;
+}
+
+/* Using display: flex to make the tables side by side */
+.match-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Specifying the styles for the coloumns and rows of the table */
+.batters-table, .bowlers-table {
+    background-color: rgba(255, 255, 255, 0);
+    flex: 1;
+    min-width: 300px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Using the font: Montserrat for the text in the table */
+table {
+    border: 1.3px solid black;
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1.3px solid black;
+    /* border: none; */
+    /* border-bottom: 1px solid #ddd; */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Arranging the buttons using display: flex */
+.runs-btns, .other-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Specifying the styles of button */
+button {
+    background: rgba(0, 51, 255, 1);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgba(0, 51, 220, 1);
+    transform: scale(1.04);
+}
+
+/* Specifying a min-width so that the button won't become too small */
+.run-btn {
+    min-width: 50px;
+}
+
+#wicket-btn, #runOut-btn {
+    background-color: rgba(231, 76, 60, 1);
+}
+
+#wicket-btn:hover, #runOut-btn:hover {
+    background-color: rgba(192, 57, 43, 1);
+}
+
+/* This container has the CRR(Current Run Rate) and RRR(Required Run Rate) */
+/* Made it a transparent container with respect to the base container */
+.match-info {
+    background-color: rgba(255, 255, 255, 0);
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    gap: 50px;
+}
+
+#crr-and-rrr {
+    border: 1.3px solid black;
+    width: 300px;
+}
+
+#current-over-data {
+    border: 1.3px solid black;
+    width: 300px;
+}
+
+/* This class contains the 'View Scorecard' button */
+.navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#scorecard-btn {
+    background-color: rgba(46, 204, 113, 1);
+}
+
+#scorecard-btn:hover {
+    background-color: rgba(39, 174, 96, 1);
+}
+
+
+/* Modal Styles */
+/* The following contains the styles of the modal that will appear when the page is first loaded */
+
+/* Aligning items in the center */
+.modal {
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal {
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Specifying the color and font-size of the contents */
+
+.modal-content {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+}
+
+.custom_modal-content {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+}
+
+
+h3,p {
+    color: #333;
+    margin-top: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+#modal-error {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#name-inputs {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#name-inputs input {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#submit-names {
+    background-color: rgba(0, 51, 255, 1);
+    width: 40%;
+    margin-top: 10px;
+}
+
+#submit-names:hover {
+    background-color: rgba(0, 51, 220, 1);
+    transform: scale(1.02);
+}

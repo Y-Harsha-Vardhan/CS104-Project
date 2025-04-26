@@ -1,0 +1,135 @@
+/* This is summary.css, it contains all the styles related to the live.html page */
+
+/* Importing fonts for the text */
+
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Oswald */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+/* Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Using an image as background and aligning the position of content in the center */
+html, body {
+    overscroll-behavior: none;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("Images/Bat-Ball.jpg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    min-height: 100vh;
+    padding: 50px 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+/* Using padding to make the container spacious */
+/* Made it curved rectangle using border-radius property */
+.summary-container {
+    background: rgba(255,255,255,0.75);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    color: #000;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    margin: auto auto;
+}
+
+/* Using Oswald font for: 'Summary Title' heading */
+h1 {
+    color: #333;
+    font-family: "Oswald", sans-serif;
+    word-spacing: 6px;
+    font-size: 50px;
+    font-weight: 500;
+}
+
+/* Using Montserrat font for: 'Match Result' heading */
+h2 {
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    word-spacing: 6px;
+    margin: 10px 0;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+/* Styles for the reset confirm modal */
+#reset-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#reset-modal > div {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+#reset-confirm {
+    background: #ff4d4d;
+    color: white;
+}
+
+.modal-btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Arranging the buttons using display: flex */
+.btns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 10px 0;
+}
+
+/* Specifying the styles of button */
+button {
+    background: rgba(0, 51,255,1);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgba(0, 51, 220, 1);
+    transform: scale(1.04);
+}
