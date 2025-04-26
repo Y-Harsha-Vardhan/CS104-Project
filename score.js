@@ -837,7 +837,8 @@ function addCommentary(eventCode, details = {}) {
     }
 
     const bowler = matchData.bowlers[matchData.currentBowler];
-    const batter = matchData.batters[matchData.currentStriker];
+    let batter = matchData.batters[matchData.currentStriker];
+    if (eventCode.startsWith('Run Out')) batter = matchData.batters[JSON.parse(localStorage.getItem('runOutBatsman'))];
 
     if (!bowler || !batter) {
         console.warn("Cannot add commentary: Batter or Bowler object not found.");
