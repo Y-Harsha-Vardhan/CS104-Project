@@ -716,7 +716,8 @@ function processRunOut(runs, newBatterName) {
     if (matchData.matchOver || matchData.allOut || matchData.wickets >= 10) return;
     consumeFreeHitIfNotExtra(false); // Add this line (false = not an extra)
     const strikerBeforeRunout = matchData.currentStriker;
-    localStorage.setItem("runOutBatsman", strikerBeforeRunout);
+    const outBatterObject = matchData.batters[strikerBeforeRunout];
+    const outBatterName = outBatterObject?.name || 'Batter';
 
     // Add runs to team total and batsman's score
     if (runs >= 0) {
@@ -752,20 +753,29 @@ function processRunOut(runs, newBatterName) {
     });
     const newBatterIndex = matchData.batters.length - 1;
     
-    // Determine positions based on runs scored
-    if (runs % 2 !== 0) {
-        // Odd runs - swap ends
-        // New batter comes in at non-striker's end
-        matchData.currentStriker = originalNonStrikerIndex;
+    // --- Determine Strike for Next Ball ---
+const crossed = runs % 2 !== 0; // Did they cross?
+const remainingBatterIndex = originalNonStrikerIndex; // The non-striker is the one remaining
+
+// Ensure the remaining batter index is valid and the batter is not out
+if (Number.isInteger(remainingBatterIndex) && matchData.batters[remainingBatterIndex] && !matchData.batters[remainingBatterIndex].out) {
+    if (crossed) {
+        // If crossed, the remaining batter takes strike. New batter is non-striker.
+        matchData.currentStriker = remainingBatterIndex;
         matchData.currentNonStriker = newBatterIndex;
     } else {
-        // Even runs - no swap
-        // New batter comes in at striker's end
+        // If not crossed, the new batter takes strike. Remaining batter is non-striker.
         matchData.currentStriker = newBatterIndex;
-        // Non-striker remains the same
+        matchData.currentNonStriker = remainingBatterIndex;
     }
+} else {
+    // If the original non-striker was invalid/out, the new batter must take strike
+    matchData.currentStriker = newBatterIndex;
+    matchData.currentNonStriker = null; // No valid non-striker left? Or handle based on rules.
+     console.warn("Original non-striker was invalid or out during run out, setting new batter as striker.");
+}
     
-    addCommentary(`Run Out (${runs})`);
+    addCommentary(`Run Out (${runs})`, {runsOnEvent: runs, outBatterName: outBatterName});
     
     // Handle over completion if this was the 6th ball
     if (matchData.balls % 6 === 0 && matchData.balls > 0) {
@@ -838,6 +848,7 @@ function addCommentary(eventCode, details = {}) {
 
     const bowler = matchData.bowlers[matchData.currentBowler];
     const batter = matchData.batters[matchData.currentStriker];
+    //if (eventCode.startsWith('Run Out')) batter = matchData.batters[JSON.parse(localStorage.getItem('runOutBatsman'))];
 
     if (!bowler || !batter) {
         console.warn("Cannot add commentary: Batter or Bowler object not found.");
@@ -857,7 +868,7 @@ function addCommentary(eventCode, details = {}) {
     const ballInOver = (ballIndexForOverCalc % 6) + 1;
 
     const bowlerName = bowler.name || 'Unknown Bowler';
-    const batterName = batter.name || 'Unknown Batter';
+    let batterName = batter.name || 'Unknown Batter';
 
     let description;
     let commentaryEventCode = String(eventCode); // Use the provided event code
@@ -871,6 +882,8 @@ function addCommentary(eventCode, details = {}) {
         case 'Wf': description = 'Wicket (Free Hit)'; break; // Wicket on Free Hit
         case 'Ro':
             const runs = details.runsOnEvent !== undefined ? details.runsOnEvent : '0';
+            const runOutBatterName = details.outBatterName || batterName;
+            batterName = runOutBatterName; 
             description = `Run Out (${runs})`;
             break;
         case '0': description = 'no run'; break;
