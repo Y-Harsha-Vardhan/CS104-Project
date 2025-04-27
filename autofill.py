@@ -38,6 +38,12 @@ CSK_Bowl = ['Jadeja', 'Pathirana', 'Ashwin', 'Shivam', 'Curran']
 RCB_Team = ['Kohli', 'Patidar', 'Siraj', 'Bhuvneshwar', 'Krunal', 'Maxwell', 'David', 'Hazlewood', 'Salt', 'Suyash', 'Manoj']
 RCB_Bowl = ['Siraj', 'Bhuvneshwar', 'Hazlewood', 'Krunal', 'Suyash']
 
+#Initialising Index for the List of Names
+a1 = 0
+b1 = 0
+a2 = 0
+b2 = 0
+
 #Sending input 
 team1_name.send_keys("CSK")
 team2_name.send_keys("RCB")
@@ -63,12 +69,14 @@ random.shuffle(CSK_Team)
 random.shuffle(RCB_Bowl)
 input_fields[0].send_keys(CSK_Team[0])
 input_fields[1].send_keys(CSK_Team[1])
+a1+=2
 input_fields[2].send_keys(RCB_Bowl[0])
+b1+=1
 
 #Clicking the button: 'Submit Names', to start the Live Match
 driver.find_element(By.ID, "submit-names").click()
 
-#Writing a function which will click any random run buttonn and a function that handles a prompt
+#Writing a function which will click any random run button and a function that handles a prompt
 def clickRunBtns():
     for i in range(6):
         runBtns = driver.find_elements(By.CLASS_NAME, "run-btn")

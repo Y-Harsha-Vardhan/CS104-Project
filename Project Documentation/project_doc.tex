@@ -57,8 +57,10 @@ and the website will automatically update player and match statistics in real ti
 \section{Tools Used}
 \begin{itemize}
 \item \textbf{Frontend:} HTML, CSS, JavaScript
-\item \textbf{Version Control:} GitHub 
 \item \textbf{IDE:} VS Code
+\item \textbf{Testing:} Selenium Module in Python
+\item \textbf{Version Control:} GitHub \\
+ Repository: \url{https://github.com/Y-Harsha-Vardhan/CS104-Project.git}
 \end{itemize}
 
 \section{Project Structure}
@@ -125,6 +127,16 @@ The following are the screenshots of various pages of the Website:
   \item Live page allows the user to control the match using buttons and updates the display dynamically [Fig \ref{live-modal}, Fig \ref{live}].
   \item Scorecard page shows the match commentary, data until that point of the match [Fig \ref{scorecard}].
   \item Summary page displays the final match result and allows the user to reset the match if required [Fig \ref{summary}].
+\end{itemize}
+
+\section{Basic Features}
+\begin{itemize}
+\item 
+\end{itemize}
+
+\section{Customizations}
+\begin{itemize}
+\item 
 \end{itemize}
 
 \section{Functions Used in JS: \textit{score.js}}
@@ -284,22 +296,42 @@ It checks for the correctness of the player names entered, and then stores them
 
 \subsubsection{\textit{takeWicket()}}
 \begin{itemize}
-\item 
+\item This function updates the data of the bowler and sets the \textit{currentStriker} batsman as out
+\item It returns (no change) if either: the match is over, all out, \textit{matchData.wickets} >= 10 or if \textit{currentStriker} is not properly set (null).
+\item It calls \textit{consumeFreeHitExtra(false)} which will remove any Free Hit Indicator message in the Live Match Display.
+\item It sets the \textit{currentStriker} to out and calls \textit{addCommentary('W')} function
+\item It then checks for end of match or innings and if true, then calls \textit{saveMatchData(), updateDisplay()}.
+\item If \textit{matchData.wickets < 10} then calls \textit{showNewBatterPrompt()} else it sets \textit{matchData.allOut} to true.
+\item It checks for End of Over, and swaps the \textit{currentStriker} and \textit{nonStriker}, updates the bowler stats and calls \textit{showNewBowlerPrompt()}
+\item It then adds the new bowler to the list of bowlers in \textit{matchData.bowlers}
+\item It finally calls \textit{saveMatchData()} and \textit{updateDisplay()} to update changes.
 \end{itemize}
 
 \subsubsection{\textit{addWide()}}
 \begin{itemize}
-\item 
+\item This function updates the player data according to a Wide 
+\item It returns (no change) if either: the match is over, all out or \textit{currentBowler} is not properly set (null).
+\item It calls \textit{consumeFreehitExtra(true)} so that the Free Hit will carry forward to the next ball as well.
+\item It increments the \textit{matchData.extras}, \textit{matchData.totalRuns} and \textit{matchData.currentBowler.runs} by 1 each.
+\item It finally calls: \textit{addCommentary('Wd')}, \textit{saveMatchData()} and \textit{updateDisplay()}.
 \end{itemize}
 
 \subsubsection{\textit{addNoBall()}}
 \begin{itemize}
-\item 
+\item This function is implemented a bit differently compared to conventional No Ball in Cricket Matches
+\item It is considered as an extra, and 1 run is awarded to the Batting Team
+\item It sets the next ball after a No Ball as a Free Hit and indicates it with an indicator near the display, but the batsman can get RunOut or his Wicket may be taken in this ball if the user presses those buttons.
+\item If the next ball is a Wide or a No ball again, then the Free Hit gets carried forward.
+\item It calls \textit{consumeFreeHitIfNotExtra(true)}, \textit{addCommentary('Nb')}
+\item It sets the \textit{matchData.isFreeHit} to true, and finally calls \textit{saveMatchData()} and \textit{updateDisplay()}.
 \end{itemize}
 
 \subsubsection{\textit{consumeFreeHitIfNotExtra(isDeliveryExtra)}}
 \begin{itemize}
-\item 
+\item This is a helper function that is used to reset the Match Status after the Free Hit is consumed.
+\item It checks if \textit{matchData.isFreeHit} is true, and if \textit{isDeliveryExtra} is false and then sets \textit{matchData.isFreeHit} to false.
+\item This is because the ball was a free hit and this delivery is not a Wide or No Ball, so Free Hit is consumed
+\item Else, the delivery was an extra and \textit{isFreeHit} remains true.
 \end{itemize}
 
 \subsubsection{\textit{promptForRunOut()}}
@@ -329,6 +361,11 @@ It just calls the following functions:
 \item \textit{updateStatusDisplay()}
 \end{itemize}
 
+\hspace{0.5cm}
+
+The \textit {saveMatchData()} function stores the \textit {matchData} object as \textit {cricketMatchData} in the \textit {localStorage} of the Web Browser. \\
+
+In the Live Page, there is an \textit{EventListener} that listens to the click of keys and if there are any message-modals in the page, then the user can just press enter instead of manually clicking the button to submit or continue. 
 \subsection{Scorecard Page:}
 For this page there is a small inline script that has an \textit{EventListener}, listening for the \textit{DOMContentLoaded} event.
 It calls the \textit{loadScorecard()} function.
@@ -342,12 +379,21 @@ This function takes \textit{balls} as an argument and returns a corresponding st
 
 \subsubsection{\textit{loadScorecard()}}
 \begin{itemize}
-\item It first gets the \textit{cricketMatchData} from the \textit{localStorage} of the browser and stores it in \textit{MatchData} object
-\item It then extracts the data of all the batsmen and bowlers who have played until now, and stores them in separate arrays: \textit{firstInningsBatters}, \textit{secondInningsBatters} and \textit{Bowlers}.
-\item It concatenates the two arrays of the individual innings batsmen into a \textit{Batters} array.
+\item It first gets the \textit{cricketMatchData} from the \textit{localStorage} of the browser and stores it in \textit{MatchData} object (If it is not there, then the function returns)
+\item It then extracts the data of all the batsmen and bowlers who have played until now, and stores them in separate arrays: \textit{firstInningsBatters}, \textit{secondInningsBatters}, \textit{firstInningsBowlers} and \textit{secondInningsBowlers}.
 \item Before starting to populate the tables with this data, it first makes their \textit{innerHTML} empty.
-\item Then for each batsman in the array, it calculates his \textit{strikeRate} and populates his row of the table.
-\item Similarly for the bowlers, it calculates the \textit{economy} and fills in the rest of the data. 
+\item Then for each batsman in the array, it calculates his \textit{strikeRate} and populates his row of the batting table.
+\item Similarly for the bowlers, it calculates the \textit{economy} and fills in the bowling table.
+\item It then calls the \textit{setupCommentaryHover()} function. 
+\end{itemize}
+
+\subsubsection{\textit{setupCommentaryHover()}}
+\begin{itemize}
+\item It extracts the \textit{cricketMatchData} from the \textit{localStorage} and stores it in a local variable \textit{MatchData}
+\item It then groups the commentaries present in the \textit{MatchData.commentary} based on the batter and bowler names, and stores it in 2 maps.
+\item The player's name is the key and the list of commentaries related to him is the value for the Map.
+\item It then attaches hover events to each batsman and bowler rows, this is done using the \textit{mouseenter} and \textit{mouseleave} option in the \textit{addEventListener}.
+\item So, now when we hover on a player's row, his related commentaries will popup in a bow to the right of the table.
 \end{itemize}
 
 \subsection{Summary Page:}
@@ -359,8 +405,6 @@ It calls the following functions: \textit{loadMatchData()}, \textit{displayResul
 \item If this element is loaded on the page, then it gets the match data from the \\ \textit{localStorage} of the browser (the data is in the \textit{JSON String cricketMatchData})
 \item Then it changes the \textit{textContent} of \textit{resultDisplay} to the \textit{statusMessage} of the \\ \textit{cricketMatchData}
 \end{itemize}
-
-The function \textit{loadMatchData()} is a part of the Live Page's JS logic, here it is just used to generate the Final Result.
 
 \subsubsection{\textit{setupSummaryPage()}}
 \begin{itemize}

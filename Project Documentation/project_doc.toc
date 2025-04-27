@@ -2,40 +2,43 @@
 \contentsline {section}{\numberline {2}Objectives}{3}{section.2}%
 \contentsline {section}{\numberline {3}Tools Used}{3}{section.3}%
 \contentsline {section}{\numberline {4}Project Structure}{3}{section.4}%
-\contentsline {section}{\numberline {5}Design and Layout}{4}{section.5}%
-\contentsline {section}{\numberline {6}Webpage Features}{6}{section.6}%
-\contentsline {section}{\numberline {7}Functions Used in JS: \textit {score.js}}{6}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Setup Page:}{6}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}\textit {startMatch()}}{6}{subsubsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.2}Live Page:}{7}{subsection.7.2}%
-\contentsline {subsubsection}{\numberline {7.2.1}\textit {loadMatchData()}}{7}{subsubsection.7.2.1}%
-\contentsline {subsubsection}{\numberline {7.2.2}\textit {setupEventListeners()}}{7}{subsubsection.7.2.2}%
-\contentsline {subsubsection}{\numberline {7.2.3}\textit {promptForPlayerNames()}}{7}{subsubsection.7.2.3}%
-\contentsline {subsubsection}{\numberline {7.2.4}\textit {showNamePrompt()}}{8}{subsubsection.7.2.4}%
-\contentsline {subsubsection}{\numberline {7.2.5}\textit {showModal(title,message,callback)}}{8}{subsubsection.7.2.5}%
-\contentsline {subsubsection}{\numberline {7.2.6}\textit {showModalError(message)}}{8}{subsubsection.7.2.6}%
-\contentsline {subsubsection}{\numberline {7.2.7}\textit {submitPlayerNames()}}{8}{subsubsection.7.2.7}%
-\contentsline {subsubsection}{\numberline {7.2.8}\textit {isDuplicatePlayer(name,team)}}{9}{subsubsection.7.2.8}%
-\contentsline {subsubsection}{\numberline {7.2.9}\textit {showNewBatterPrompt()}}{9}{subsubsection.7.2.9}%
-\contentsline {subsubsection}{\numberline {7.2.10}\textit {showNewBowlerPrompt()}}{10}{subsubsection.7.2.10}%
-\contentsline {subsubsection}{\numberline {7.2.11}\textit {checkForEndOfMatchOrInnings()}}{10}{subsubsection.7.2.11}%
-\contentsline {subsubsection}{\numberline {7.2.12}\textit {startSecondInnings()}}{10}{subsubsection.7.2.12}%
-\contentsline {subsubsection}{\numberline {7.2.13}\textit {endMatch(message)}}{10}{subsubsection.7.2.13}%
-\contentsline {subsubsection}{\numberline {7.2.14}\textit {addRuns(runs)}}{11}{subsubsection.7.2.14}%
-\contentsline {subsubsection}{\numberline {7.2.15}\textit {takeWicket()}}{11}{subsubsection.7.2.15}%
-\contentsline {subsubsection}{\numberline {7.2.16}\textit {addWide()}}{11}{subsubsection.7.2.16}%
-\contentsline {subsubsection}{\numberline {7.2.17}\textit {addNoBall()}}{11}{subsubsection.7.2.17}%
-\contentsline {subsubsection}{\numberline {7.2.18}\textit {consumeFreeHitIfNotExtra(isDeliveryExtra)}}{12}{subsubsection.7.2.18}%
-\contentsline {subsubsection}{\numberline {7.2.19}\textit {promptForRunOut()}}{12}{subsubsection.7.2.19}%
-\contentsline {subsubsection}{\numberline {7.2.20}\textit {processRunOut(runs,newBatterName)}}{12}{subsubsection.7.2.20}%
-\contentsline {subsubsection}{\numberline {7.2.21}\textit {addCommentary(eventCode,details\{\})}}{12}{subsubsection.7.2.21}%
-\contentsline {subsubsection}{\numberline {7.2.22}\textit {updateDisplay()}}{12}{subsubsection.7.2.22}%
-\contentsline {subsection}{\numberline {7.3}Scorecard Page:}{12}{subsection.7.3}%
-\contentsline {subsubsection}{\numberline {7.3.1}\textit {goBack()}}{12}{subsubsection.7.3.1}%
-\contentsline {subsubsection}{\numberline {7.3.2}\textit {formatOvers(balls)}}{12}{subsubsection.7.3.2}%
-\contentsline {subsubsection}{\numberline {7.3.3}\textit {loadScorecard()}}{13}{subsubsection.7.3.3}%
-\contentsline {subsection}{\numberline {7.4}Summary Page:}{13}{subsection.7.4}%
-\contentsline {subsubsection}{\numberline {7.4.1}\textit {displayResult()}}{13}{subsubsection.7.4.1}%
-\contentsline {subsubsection}{\numberline {7.4.2}\textit {setupSummaryPage()}}{13}{subsubsection.7.4.2}%
-\contentsline {section}{\numberline {8}FlowChart Representation of Functions in Live Page}{14}{section.8}%
-\contentsline {section}{\numberline {9}References}{14}{section.9}%
+\contentsline {section}{\numberline {5}Design and Layout}{5}{section.5}%
+\contentsline {section}{\numberline {6}Webpage Features}{7}{section.6}%
+\contentsline {section}{\numberline {7}Basic Features}{7}{section.7}%
+\contentsline {section}{\numberline {8}Customizations}{7}{section.8}%
+\contentsline {section}{\numberline {9}Functions Used in JS: \textit {score.js}}{8}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Setup Page:}{8}{subsection.9.1}%
+\contentsline {subsubsection}{\numberline {9.1.1}\textit {startMatch()}}{8}{subsubsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.2}Live Page:}{8}{subsection.9.2}%
+\contentsline {subsubsection}{\numberline {9.2.1}\textit {loadMatchData()}}{8}{subsubsection.9.2.1}%
+\contentsline {subsubsection}{\numberline {9.2.2}\textit {setupEventListeners()}}{8}{subsubsection.9.2.2}%
+\contentsline {subsubsection}{\numberline {9.2.3}\textit {promptForPlayerNames()}}{9}{subsubsection.9.2.3}%
+\contentsline {subsubsection}{\numberline {9.2.4}\textit {showNamePrompt()}}{9}{subsubsection.9.2.4}%
+\contentsline {subsubsection}{\numberline {9.2.5}\textit {showModal(title,message,callback)}}{9}{subsubsection.9.2.5}%
+\contentsline {subsubsection}{\numberline {9.2.6}\textit {showModalError(message)}}{9}{subsubsection.9.2.6}%
+\contentsline {subsubsection}{\numberline {9.2.7}\textit {submitPlayerNames()}}{10}{subsubsection.9.2.7}%
+\contentsline {subsubsection}{\numberline {9.2.8}\textit {isDuplicatePlayer(name,team)}}{10}{subsubsection.9.2.8}%
+\contentsline {subsubsection}{\numberline {9.2.9}\textit {showNewBatterPrompt()}}{11}{subsubsection.9.2.9}%
+\contentsline {subsubsection}{\numberline {9.2.10}\textit {showNewBowlerPrompt()}}{11}{subsubsection.9.2.10}%
+\contentsline {subsubsection}{\numberline {9.2.11}\textit {checkForEndOfMatchOrInnings()}}{11}{subsubsection.9.2.11}%
+\contentsline {subsubsection}{\numberline {9.2.12}\textit {startSecondInnings()}}{11}{subsubsection.9.2.12}%
+\contentsline {subsubsection}{\numberline {9.2.13}\textit {endMatch(message)}}{12}{subsubsection.9.2.13}%
+\contentsline {subsubsection}{\numberline {9.2.14}\textit {addRuns(runs)}}{12}{subsubsection.9.2.14}%
+\contentsline {subsubsection}{\numberline {9.2.15}\textit {takeWicket()}}{13}{subsubsection.9.2.15}%
+\contentsline {subsubsection}{\numberline {9.2.16}\textit {addWide()}}{13}{subsubsection.9.2.16}%
+\contentsline {subsubsection}{\numberline {9.2.17}\textit {addNoBall()}}{13}{subsubsection.9.2.17}%
+\contentsline {subsubsection}{\numberline {9.2.18}\textit {consumeFreeHitIfNotExtra(isDeliveryExtra)}}{14}{subsubsection.9.2.18}%
+\contentsline {subsubsection}{\numberline {9.2.19}\textit {promptForRunOut()}}{14}{subsubsection.9.2.19}%
+\contentsline {subsubsection}{\numberline {9.2.20}\textit {processRunOut(runs,newBatterName)}}{14}{subsubsection.9.2.20}%
+\contentsline {subsubsection}{\numberline {9.2.21}\textit {addCommentary(eventCode,details\{\})}}{14}{subsubsection.9.2.21}%
+\contentsline {subsubsection}{\numberline {9.2.22}\textit {updateDisplay()}}{14}{subsubsection.9.2.22}%
+\contentsline {subsection}{\numberline {9.3}Scorecard Page:}{15}{subsection.9.3}%
+\contentsline {subsubsection}{\numberline {9.3.1}\textit {goBack()}}{15}{subsubsection.9.3.1}%
+\contentsline {subsubsection}{\numberline {9.3.2}\textit {formatOvers(balls)}}{15}{subsubsection.9.3.2}%
+\contentsline {subsubsection}{\numberline {9.3.3}\textit {loadScorecard()}}{15}{subsubsection.9.3.3}%
+\contentsline {subsubsection}{\numberline {9.3.4}\textit {setupCommentaryHover()}}{15}{subsubsection.9.3.4}%
+\contentsline {subsection}{\numberline {9.4}Summary Page:}{16}{subsection.9.4}%
+\contentsline {subsubsection}{\numberline {9.4.1}\textit {displayResult()}}{16}{subsubsection.9.4.1}%
+\contentsline {subsubsection}{\numberline {9.4.2}\textit {setupSummaryPage()}}{16}{subsubsection.9.4.2}%
+\contentsline {section}{\numberline {10}FlowChart Representation of Functions in Live Page}{17}{section.10}%
+\contentsline {section}{\numberline {11}References}{17}{section.11}%

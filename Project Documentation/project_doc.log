@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.4.8)  24 APR 2025 23:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.4.8)  27 APR 2025 18:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -478,22 +478,22 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 41.
  (project_doc.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 8.
+(Font)              <12> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 8.
+(Font)              <8> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 8.
+(Font)              <6> on input line 10.
 
 
 [1
 
 {C:/Users/yhars/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 31.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 33.
  (C:\Users\yhars\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
 )
 \tf@toc=\write5
 \openout5 = `project_doc.toc'.
@@ -509,7 +509,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 67.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 69.
 
 
 
@@ -520,15 +520,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [3]
-<images/homepage.png, id=233, 2168.1pt x 1355.0625pt>
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[4]
+<images/homepage.png, id=253, 2168.1pt x 1355.0625pt>
 File: images/homepage.png Graphic file (type png)
 <use images/homepage.png>
-Package pdftex.def Info: images/homepage.png  used on input line 86.
+Package pdftex.def Info: images/homepage.png  used on input line 88.
 (pdftex.def)             Requested size: 452.9679pt x 283.10349pt.
-<images/live-modal.png, id=235, 2142.50438pt x 1218.80344pt>
+<images/live-modal.png, id=255, 2142.50438pt x 1218.80344pt>
 File: images/live-modal.png Graphic file (type png)
 <use images/live-modal.png>
-Package pdftex.def Info: images/live-modal.png  used on input line 93.
+Package pdftex.def Info: images/live-modal.png  used on input line 95.
 (pdftex.def)             Requested size: 452.9679pt x 257.66724pt.
 
 
@@ -539,23 +548,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[4
+[5
 
  <./images/homepage.png> <./images/live-modal.png>]
-<images/live.png, id=244, 2168.1pt x 1355.0625pt>
+<images/live.png, id=264, 2168.1pt x 1355.0625pt>
 File: images/live.png Graphic file (type png)
 <use images/live.png>
-Package pdftex.def Info: images/live.png  used on input line 101.
+Package pdftex.def Info: images/live.png  used on input line 103.
 (pdftex.def)             Requested size: 452.9679pt x 283.10349pt.
-<images/scorecard.png, id=245, 2168.1pt x 1355.0625pt>
+<images/scorecard.png, id=265, 2168.1pt x 1355.0625pt>
 File: images/scorecard.png Graphic file (type png)
 <use images/scorecard.png>
-Package pdftex.def Info: images/scorecard.png  used on input line 110.
+Package pdftex.def Info: images/scorecard.png  used on input line 112.
 (pdftex.def)             Requested size: 452.9679pt x 283.10349pt.
-<images/summary.png, id=246, 2144.76282pt x 1232.35406pt>
+<images/summary.png, id=266, 2144.76282pt x 1232.35406pt>
 File: images/summary.png Graphic file (type png)
 <use images/summary.png>
-Package pdftex.def Info: images/summary.png  used on input line 117.
+Package pdftex.def Info: images/summary.png  used on input line 119.
 (pdftex.def)             Requested size: 452.9679pt x 260.26872pt.
 
 
@@ -570,7 +579,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[5
+[6
 
  <./images/live.png> <./images/scorecard.png>]
 
@@ -581,21 +590,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[6 <./images/summary.png>]
-Overfull \hbox (1.7113pt too wide) in paragraph at lines 146--148
+[7 <./images/summary.png>]
+Overfull \hbox (1.7113pt too wide) in paragraph at lines 158--160
 \OT1/cmr/m/n/12 When this page is ini-tial-ized, an \OT1/cmr/m/it/12 EventLis-tener \OT1/cmr/m/n/12 calls: \OT1/cmr/m/it/12 load-Match-Data() \OT1/cmr/m/n/12 and \OT1/cmr/m/it/12 se-tu-pEventLis-
  []
 
 
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[7]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -632,9 +632,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [11]
-LaTeX Font Info:    Font shape `OMS/cmr/bx/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 315.
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -644,6 +641,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [12]
+Overfull \hbox (51.43115pt too wide) in paragraph at lines 315--316
+[]\OT1/cmr/m/n/12 It in-cre-ments the \OT1/cmr/m/it/12 match-Data.extras\OT1/cmr/m/n/12 , \OT1/cmr/m/it/12 match-Data.totalRuns \OT1/cmr/m/n/12 and \OT1/cmr/m/it/12 match-Data.currentBowler.runs
+ []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -653,14 +655,45 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [13]
-Overfull \hbox (11.30786pt too wide) in paragraph at lines 374--374
-[]\OT1/cmr/bx/n/17.28 FlowChart Rep-re-sen-ta-tion of Func-tions in Live Page 
+LaTeX Font Info:    Font shape `OMS/cmr/bx/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 347.
+
+Underfull \hbox (badness 10000) in paragraph at lines 366--367
+
  []
 
-<images/flowchart.png, id=299, 2025.06563pt x 1289.56781pt>
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[14]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[15]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[16]
+<images/flowchart.png, id=327, 2025.06563pt x 1289.56781pt>
 File: images/flowchart.png Graphic file (type png)
 <use images/flowchart.png>
-Package pdftex.def Info: images/flowchart.png  used on input line 377.
+Package pdftex.def Info: images/flowchart.png  used on input line 421.
 (pdftex.def)             Requested size: 452.9679pt x 288.448pt.
 
 
@@ -671,7 +704,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[14
+[17
 
  <./images/flowchart.png>] (project_doc.aux)
  ***********
@@ -679,20 +712,20 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `project_doc.out' has not changed.
-(rerunfilecheck)             Checksum: 641D77D6DFE154B226C76FCEECC9C645;6652.
+(rerunfilecheck)             Checksum: 233A9000C9271D2FDE9235C98201F0C2;7069.
  ) 
 Here is how much of TeX's memory you used:
- 20951 strings out of 473523
- 405373 string characters out of 5714631
- 792607 words of memory out of 5000000
- 43795 multiletter control sequences out of 15000+600000
+ 20960 strings out of 473523
+ 405478 string characters out of 5714631
+ 791609 words of memory out of 5000000
+ 43798 multiletter control sequences out of 15000+600000
  566138 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,91p,491b,541s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\yhars\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on project_doc.pdf (14 pages, 41945829 bytes).
+Output written on project_doc.pdf (17 pages, 41956244 bytes).
 PDF statistics:
- 363 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 371 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 392 PDF objects out of 1000 (max. 8388607)
+ 71 named destinations out of 1000 (max. 500000)
+ 395 words of extra memory for PDF output out of 10000 (max. 10000000)
 

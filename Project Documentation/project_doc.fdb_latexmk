@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1745518033.3184 "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" "project_doc.pdf" "project_doc" 1745518039.38774 0
+["pdflatex"] 1745759573.69631 "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" "project_doc.pdf" "project_doc" 1745759579.26011 0
   "C:/Users/yhars/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1744632860 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/yhars/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1744117016 14064 8b957cab022227e4646854519a6004de ""
   "C:/Users/yhars/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1744116286 12036088 6343920b6fa54c2e57337c9318997df8 ""
@@ -142,17 +142,17 @@
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" 1745518026 20911 40fddf5c3931641010e828d96ad46912 ""
+  "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" 1745759568 25049 6e0ea72be508c4318d3b4223e1a132c3 ""
   "images/flowchart.png" 1744974583 179676 be2bc788e2ccd9411503795c855f0ea4 ""
   "images/homepage.png" 1745405001 5918690 89d1e803f4881b46fdf240e465d05c37 ""
   "images/live-modal.png" 1744227082 4204891 a9a94aed5cd4b0add9ceb31f1cb57cf2 ""
   "images/live.png" 1745405155 6258768 242348abc00b17f25be0860a20e87816 ""
   "images/scorecard.png" 1745405293 5309947 401bb1227e88bfa1d3bc7712746f4fba ""
   "images/summary.png" 1744227208 6102958 a8d53a1f32dd7f61d0b20aaaebe32d2c ""
-  "project_doc.aux" 1745518038 7249 4d75c729ce13153ae99d985ee35335bb "pdflatex"
-  "project_doc.out" 1745518038 6652 641d77d6dfe154b226c76fceecc9c645 "pdflatex"
-  "project_doc.tex" 1745518026 20911 40fddf5c3931641010e828d96ad46912 ""
-  "project_doc.toc" 1745518038 4013 0049157c180639c5f21936bca6d3927f "pdflatex"
+  "project_doc.aux" 1745759579 7629 85706f441c0c56c3f51933e5feb403b5 "pdflatex"
+  "project_doc.out" 1745759579 7069 233a9000c9271d2fde9235c98201f0c2 "pdflatex"
+  "project_doc.tex" 1745759568 25049 6e0ea72be508c4318d3b4223e1a132c3 ""
+  "project_doc.toc" 1745759579 4269 a9e2ededcd00226bd1d135d682e4fc62 "pdflatex"
   (generated)
   "project_doc.aux"
   "project_doc.log"
