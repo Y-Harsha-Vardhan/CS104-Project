@@ -600,18 +600,15 @@ function takeWicket() {
     updateDisplay();
 }
 
+//This function handles the tasks when the 'Wicket' Button is clicked
 function addWide() {
     if (matchData.matchOver || matchData.allOut || !Number.isInteger(matchData.currentBowler)) return;
     consumeFreeHitIfNotExtra(true);
 
-    // Add 1 run to extras and total (wide is always +1 run)
     matchData.extras += 1;
     matchData.totalRuns += 1;
-    
-    // Add the run to bowler's stats but don't count as a ball
-    if (Number.isInteger(matchData.currentBowler) && matchData.bowlers[matchData.currentBowler]) {
-        matchData.bowlers[matchData.currentBowler].runs += 1;
-    }
+
+    if (Number.isInteger(matchData.currentBowler) && matchData.bowlers[matchData.currentBowler]) {matchData.bowlers[matchData.currentBowler].runs += 1;}
     
     addCommentary('Wd');
     
@@ -619,46 +616,35 @@ function addWide() {
     updateDisplay();
 }
 
-// Add this function definition somewhere near addWide() or takeWicket()
-
+//This function handles the tasks when 'No Ball' button is clicked
 function addNoBall() {
-    // Ensure the match isn't over and a bowler is selected [cite: 140]
     if (matchData.matchOver || matchData.allOut || !Number.isInteger(matchData.currentBowler)) return;
     consumeFreeHitIfNotExtra(true);
 
-    // Add 1 run to extras and total score [cite: 141, 142]
     matchData.extras += 1;
     matchData.totalRuns += 1;
 
-    // Add the run to the bowler's conceded runs, but don't increment their ball count [cite: 142]
-    if (Number.isInteger(matchData.currentBowler) && matchData.bowlers[matchData.currentBowler]) {
-        matchData.bowlers[matchData.currentBowler].runs += 1;
-        // NOTE: We do NOT increment matchData.bowlers[matchData.currentBowler].balls++;
-        // NOTE: We also do NOT increment matchData.balls++;
-    } else {
+    if (Number.isInteger(matchData.currentBowler) && matchData.bowlers[matchData.currentBowler]) {matchData.bowlers[matchData.currentBowler].runs += 1;}
+    else {
         console.error("Error: Current bowler not set correctly for no-ball."); // [cite: 97]
         return;
     }
 
     matchData.isFreeHit = true;
-    addCommentary('Nb'); // Add commentary for the no-ball [cite: 168]
+    addCommentary('Nb');
 
-    saveMatchData(); // Save the updated match state [cite: 114, 212]
-    updateDisplay(); // Update the scoreboard and other displays [cite: 114, 175]
+    saveMatchData(); 
+    updateDisplay(); 
 }
 
-// Add this helper function somewhere accessible
+//This is a helper function that is used to reset the Match to dafult state after a Free Hit is consumed
 function consumeFreeHitIfNotExtra(isDeliveryExtra) {
-    if (matchData.isFreeHit) {
-        if (!isDeliveryExtra) {
-            // It was a free hit, and this delivery was NOT a Wide or No Ball,
-            // so consume the free hit state.
-            matchData.isFreeHit = false;
-        }
-        // If it WAS an extra (Wd/Nb) on a free hit, isFreeHit remains true.
-    }
+    if (matchData.isFreeHit && !isDeliveryExtra) matchData.isFreeHit = false;
 }
 
+//This function dynamically creates and appends the labels and input fields to add a new batsman after a run out
+//It then hides the created modal after clicking on the submit button
+//It also checks if the Run Out is called at the end of an over and then calls showNewBowlerPrompt() to start the next over
 function promptForRunOut() {
     const originalSubmit = submitNamesButton.onclick;
     
@@ -666,7 +652,6 @@ function promptForRunOut() {
     nameInputs.innerHTML = '';
     modalTitle.textContent = 'Run Out! Enter runs scored and new batter';
     
-    // Add input for runs scored before run out
     const runsLabel = document.createElement('label');
     runsLabel.textContent = 'Runs scored before out:';
     nameInputs.appendChild(runsLabel);
@@ -678,7 +663,6 @@ function promptForRunOut() {
     runsInput.id = 'run-out-runs';
     nameInputs.appendChild(runsInput);
     
-    // Add input for new batter
     const batterLabel = document.createElement('label');
     batterLabel.textContent = 'New Batter:';
     nameInputs.appendChild(batterLabel);
@@ -689,10 +673,8 @@ function promptForRunOut() {
     batterInput.id = 'new-batter';
     nameInputs.appendChild(batterInput);
     
-    // Clear any previous error
     if (document.getElementById('modal-error')) {document.getElementById('modal-error').textContent = '';}
     
-    // Create new temporary submit handler
     submitNamesButton.onclick = function() {
         const runs = parseInt(document.getElementById('run-out-runs').value) || 0;
         const newBatter = document.getElementById('new-batter').value.trim();
@@ -702,47 +684,53 @@ function promptForRunOut() {
         if (newBatter === nonStrikerName) {showModalError("New batter cannot be the same as the non-striker."); return;}
         if (isDuplicatePlayer(newBatter,'batting')) {showModalError("Invalid Batter Name"); return;}
 
-        // Process the run out
         processRunOut(runs, newBatter);
         
-        // Reset modal and restore original submit handler
         modal.style.display = 'none';
         submitNamesButton.onclick = originalSubmit;
+
+        setTimeout(() => {
+            if (!matchData.matchOver && !matchData.allOut && matchData.balls < matchData.overs * 6) {
+                if (matchData.balls % 6 === 0 && matchData.balls > 0) {
+                    runButtons.forEach(btn => btn.disabled = true);
+                    wicketButton.disabled = true;
+                    wideButton.disabled = true;
+                    runOutButton.disabled = true;
+                    showNewBowlerPrompt();
+                }
+            }
+        }, 100);
+        
     };
 }
 
+//This function takes runs, newBatterName as arguments and then updates the new batsman into the cricketMatchData
 function processRunOut(runs, newBatterName) {
 
     if (matchData.matchOver || matchData.allOut || matchData.wickets >= 10) return;
-    consumeFreeHitIfNotExtra(false); // Add this line (false = not an extra)
+    consumeFreeHitIfNotExtra(false); 
     const strikerBeforeRunout = matchData.currentStriker;
     const outBatterObject = matchData.batters[strikerBeforeRunout];
     const outBatterName = outBatterObject?.name || 'Batter';
 
-    // Add runs to team total and batsman's score
     if (runs >= 0) {
         matchData.totalRuns += runs;
         matchData.batters[matchData.currentStriker].runs += runs;
         matchData.batters[matchData.currentStriker].balls++;
         
-        // Add runs to bowler's stats
         if (Number.isInteger(matchData.currentBowler) && matchData.bowlers[matchData.currentBowler]) {
             matchData.bowlers[matchData.currentBowler].runs += runs;
             matchData.bowlers[matchData.currentBowler].balls++;
         }
     }
-    
-    // Count the run out as a wicket
+
     matchData.wickets++;
-    matchData.balls++; // Count as a ball faced
+    matchData.balls++; 
     
-    // Mark batsman as out
     matchData.batters[matchData.currentStriker].out = true;
     
-    // Store the non-striker index before adding new batter
     const originalNonStrikerIndex = matchData.currentNonStriker;
     
-    // Add new batter to the lineup
     matchData.batters.push({ 
         name: newBatterName, 
         runs: 0, 
@@ -753,37 +741,29 @@ function processRunOut(runs, newBatterName) {
     });
     const newBatterIndex = matchData.batters.length - 1;
     
-    // --- Determine Strike for Next Ball ---
-const crossed = runs % 2 !== 0; // Did they cross?
-const remainingBatterIndex = originalNonStrikerIndex; // The non-striker is the one remaining
+    // --- Determines the Strike Batsman for Next Ball ---
+    const crossed = runs % 2 !== 0; 
+    const remainingBatterIndex = originalNonStrikerIndex;
 
-// Ensure the remaining batter index is valid and the batter is not out
-if (Number.isInteger(remainingBatterIndex) && matchData.batters[remainingBatterIndex] && !matchData.batters[remainingBatterIndex].out) {
-    if (crossed) {
-        // If crossed, the remaining batter takes strike. New batter is non-striker.
-        matchData.currentStriker = remainingBatterIndex;
-        matchData.currentNonStriker = newBatterIndex;
-    } else {
-        // If not crossed, the new batter takes strike. Remaining batter is non-striker.
+    if (Number.isInteger(remainingBatterIndex) && matchData.batters[remainingBatterIndex] && !matchData.batters[remainingBatterIndex].out) {
+        if (crossed) {
+            matchData.currentStriker = remainingBatterIndex;
+            matchData.currentNonStriker = newBatterIndex;
+        } else {
+            matchData.currentStriker = newBatterIndex;
+            matchData.currentNonStriker = remainingBatterIndex;
+        }
+    } 
+    else {
         matchData.currentStriker = newBatterIndex;
-        matchData.currentNonStriker = remainingBatterIndex;
+        matchData.currentNonStriker = null; 
+        console.warn("Original non-striker was invalid or out during run out, setting new batter as striker.");
     }
-} else {
-    // If the original non-striker was invalid/out, the new batter must take strike
-    matchData.currentStriker = newBatterIndex;
-    matchData.currentNonStriker = null; // No valid non-striker left? Or handle based on rules.
-     console.warn("Original non-striker was invalid or out during run out, setting new batter as striker.");
-}
     
     addCommentary(`Run Out (${runs})`, {runsOnEvent: runs, outBatterName: outBatterName});
-    
-    // Handle over completion if this was the 6th ball
-    if (matchData.balls % 6 === 0 && matchData.balls > 0) {
-        // Only swap if we have a valid non-striker who isn't out
-        if (Number.isInteger(matchData.currentNonStriker)) {
-            [matchData.currentStriker, matchData.currentNonStriker] = 
-                [matchData.currentNonStriker, matchData.currentStriker];
-        }
+
+    if (matchData.balls % 6 === 0 && matchData.balls > 0 && Number.isInteger(matchData.currentNonStriker)) {
+        [matchData.currentStriker, matchData.currentNonStriker] = [matchData.currentNonStriker, matchData.currentStriker];
     }
     
     if (checkForEndOfMatchOrInnings()) {
@@ -796,51 +776,8 @@ if (Number.isInteger(remainingBatterIndex) && matchData.batters[remainingBatterI
     updateDisplay();
 }
 
-// //This function updates the commentary with the data of each ball dynamically
-// function addCommentary(event) {
-
-//     if (!Number.isInteger(matchData.currentStriker) || !Number.isInteger(matchData.currentBowler)) return; 
-    
-//     const ballIndexJustBowled = matchData.balls - 1; 
-//     const over = Math.floor(ballIndexJustBowled / 6);
-//     const ball = (ballIndexJustBowled % 6) + 1;
-    
-//     const bowler = matchData.bowlers[matchData.currentBowler]?.name || 'Unknown Bowler';
-//     const batter = matchData.batters[matchData.currentStriker]?.name || 'Unknown Batter'; 
-    
-//     let description;
-//     const eventStr = String(event);
-//     if (eventStr === 'W') {description = 'Wicket!';} 
-//     else if (eventStr === 'Wd') {description = 'Wide!';}
-//     else if (eventStr.startsWith('Run Out')) {description = eventStr;}
-//     else if (eventStr === 'Nb') {description = 'No Ball!';}
-//     else if (eventStr === '0'){description = 'no run';} 
-//     else {
-//         const runValue = parseInt(eventStr, 10);
-        
-//         if (!isNaN(runValue)) {
-//             description = `${eventStr} run${runValue === 1 ? '' : 's'}`;
-//         } else {
-//             description = 'invalid event'; 
-//         }
-//     }
-    
-//     matchData.commentary.push({
-//         innings: matchData.innings,
-//         over: over,
-//         ball: ball,
-//         bowler: bowler,
-//         batter: batter,
-//         event: eventStr,
-//         description: description,
-//         text: `${over}.${ball} ${bowler} to ${batter}, ${description}`
-//     });
-// }
-
-// *** MODIFIED addCommentary Function ***
-// Added optional 'details' object for specific events like Run Out
+//This function handles the creation of the Commentary for every action performed in the Live Page
 function addCommentary(eventCode, details = {}) {
-    // Ensure players are set before adding commentary
     if (!Number.isInteger(matchData.currentStriker) || !Number.isInteger(matchData.currentBowler)) {
         console.warn("Cannot add commentary: Striker or Bowler not set.");
         return;
@@ -848,19 +785,14 @@ function addCommentary(eventCode, details = {}) {
 
     const bowler = matchData.bowlers[matchData.currentBowler];
     const batter = matchData.batters[matchData.currentStriker];
-    //if (eventCode.startsWith('Run Out')) batter = matchData.batters[JSON.parse(localStorage.getItem('runOutBatsman'))];
 
-    if (!bowler || !batter) {
-        console.warn("Cannot add commentary: Batter or Bowler object not found.");
-        return;
-    }
+    if (!bowler || !batter) {console.warn("Cannot add commentary: Batter or Bowler object not found."); return;}
 
-    // Calculate overall match ball index (careful with extras)
     let ballIndexForOverCalc;
     if (eventCode === 'Wd' || eventCode === 'Nb') {
-        ballIndexForOverCalc = matchData.balls; // Use current count before increment for legal balls
+        ballIndexForOverCalc = matchData.balls; 
     } else {
-        ballIndexForOverCalc = matchData.balls - 1; // Use previous count as ball was just added
+        ballIndexForOverCalc = matchData.balls - 1; 
         if (ballIndexForOverCalc < 0) ballIndexForOverCalc = 0;
     }
 
@@ -871,15 +803,14 @@ function addCommentary(eventCode, details = {}) {
     let batterName = batter.name || 'Unknown Batter';
 
     let description;
-    let commentaryEventCode = String(eventCode); // Use the provided event code
+    let commentaryEventCode = String(eventCode);
     if (commentaryEventCode.startsWith('Run Out')) {commentaryEventCode = 'Ro';}
    
-    // Handle different event types for description
     switch (commentaryEventCode) {
         case 'W': description = 'WICKET!'; break;
         case 'Wd': description = 'Wide'; break;
         case 'Nb': description = 'No Ball'; break;
-        case 'Wf': description = 'Wicket (Free Hit)'; break; // Wicket on Free Hit
+        case 'Wf': description = 'Wicket (Free Hit)'; break; 
         case 'Ro':
             const runs = details.runsOnEvent !== undefined ? details.runsOnEvent : '0';
             const runOutBatterName = details.outBatterName || batterName;
@@ -897,20 +828,13 @@ function addCommentary(eventCode, details = {}) {
             description = `event: ${commentaryEventCode}`;
     }
 
-    // Construct the commentary text line
     const commentaryText = `${over}.${ballInOver} ${bowlerName} to ${batterName}, ${description}`;
     
-    // Push the detailed commentary object
     matchData.commentary.push({
-        innings: matchData.innings,
-        over: over,
-        ball: ballInOver,
-        bowler: bowlerName,
-        batter: batterName,
-        event: commentaryEventCode, // Store the specific event code ('W', 'Wd', 'Nb', 'Ro', 'Wf', '0'-'6')
-        runsOnEvent: details.runsOnEvent, // Store runs specifically for Run Outs if provided
-        description: description,
-        text: commentaryText
+        innings: matchData.innings, over: over, ball: ballInOver,
+        bowler: bowlerName, batter: batterName, event: commentaryEventCode, 
+        runsOnEvent: details.runsOnEvent, 
+        description: description, text: commentaryText
     });
 }
 
@@ -1013,13 +937,11 @@ function updateCrrRrr() {
         const runsNeeded = matchData.firstInningsTotal - matchData.totalRuns + 1;
         const ballsRemaining = matchData.overs * 6 - totalBallsBowled;
         
-        if (runsNeeded <= 0) {
-            rrr = '0.00'; 
-        } else if (ballsRemaining <= 0) {
-            rrr = '∞'; 
-        } else {
-             const oversRemaining = ballsRemaining / 6; 
-             rrr = (runsNeeded / oversRemaining).toFixed(2);
+        if (runsNeeded <= 0) { rrr = '0.00';}
+        else if (ballsRemaining <= 0) { rrr = '∞'; } 
+        else {
+            const oversRemaining = ballsRemaining / 6; 
+            rrr = (runsNeeded / oversRemaining).toFixed(2);
         }
         rrrHtml = `<p>Required Run Rate: <strong>${rrr}</strong></p>`;
     }
@@ -1031,101 +953,48 @@ function updateCrrRrr() {
     `;
 }
 
-// // In the updateCurrentOver function
-// function updateCurrentOver() {
-//     const currentOverEvents = [];
-//     let currentOverIndex = 0;
-//     let ballsInThisOver = 0;
-
-//     if (matchData.balls === 0) {
-//         // If it's the start of innings 2 (balls=0), we still might want to show the target bowler
-//         currentOverIndex = 0;
-//         ballsInThisOver = 0;
-//     } else {
-//         currentOverIndex = Math.floor((matchData.balls - 1) / 6);
-//         ballsInThisOver = ((matchData.balls - 1) % 6) + 1;
-//     }
-
-//     // Fetch events for the balls bowled *in this specific over AND this innings*
-//     for (let i = 1; i <= ballsInThisOver; i++) {
-//         // Find the commentary entry for the calculated over index, ball number 'i', AND current innings
-//         const ballEvent = matchData.commentary.find(
-//             c => c.innings === matchData.innings && // <-- ADD THIS CONDITION
-//                  c.over === currentOverIndex &&
-//                  c.ball === i
-//         );
-//         currentOverEvents.push(ballEvent ? String(ballEvent.event) : '?');
-//     }
-
-//     while (currentOverEvents.length < 6) {
-//         currentOverEvents.push('•');
-//     }
-
-//     const bowlerName = (Number.isInteger(matchData.currentBowler) && matchData.bowlers[matchData.currentBowler])
-//                        ? matchData.bowlers[matchData.currentBowler].name
-//                        : "---";
-
-//     currentOverDisplay.innerHTML = `
-//         <p>Current Over : </p>
-//         <p>${currentOverEvents.join(' ')}</p>
-//         <p>(Bowler: ${bowlerName})</p>
-//     `;
-// }
-// *** MODIFIED updateCurrentOver Function ***
+//This function updates the Current Over segment in the Live Page using the commentary data
 function updateCurrentOver() {
-    const currentOverEventsOutput = []; // Array to hold the display strings for the over
-    let targetOverIndex = 0; // Default to the first over
+    const currentOverEventsOutput = []; 
+    let targetOverIndex = 0; 
 
-    // Find the over index of the last recorded event in the current innings
     const currentInningsCommentary = matchData.commentary.filter(c => c.innings === matchData.innings);
-    if (currentInningsCommentary.length > 0) {
-        targetOverIndex = currentInningsCommentary[currentInningsCommentary.length - 1].over;
-    } else {
-         // If no commentary yet for this innings, calculate based on balls (might be 0)
-         targetOverIndex = Math.floor(Math.max(0, matchData.balls) / 6);
-    }
-
-
-    // Iterate through commentary for the current innings and target over
+    if (currentInningsCommentary.length > 0) {targetOverIndex = currentInningsCommentary[currentInningsCommentary.length - 1].over;} 
+    else targetOverIndex = Math.floor(Math.max(0, matchData.balls) / 6);
+    
     matchData.commentary.forEach(entry => {
         if (entry.innings === matchData.innings && entry.over === targetOverIndex) {
             let displayEvent;
             switch (entry.event) {
                 case 'Wd':
-                    displayEvent = 'wd'; // Display 'wd' for Wide
+                    displayEvent = 'WD'; 
                     break;
                 case 'Nb':
-                    displayEvent = 'nb'; // Display 'nb' for No Ball
+                    displayEvent = 'NB'; 
                     break;
                 case 'W':
-                    displayEvent = 'W'; // Display 'W' for Wicket
+                    displayEvent = 'W'; 
                     break;
                 case 'Wf':
-                     displayEvent = 'Wf'; // Display 'Wf' for Wicket on Free Hit
+                     displayEvent = 'Wf'; 
                      break;
                 case 'Ro':
-                    // Format Run out as Ro(X)
-                    displayEvent = `Ro`;
+                    displayEvent = `RO`;
                     break;
                 case '0': case '1': case '2': case '3': case '4': case '6':
-                    displayEvent = entry.event; // Display runs as numbers
+                    displayEvent = entry.event; 
                     break;
                 default:
-                    displayEvent = '?'; // Fallback for unknown events
+                    displayEvent = '?';
             }
             currentOverEventsOutput.push(displayEvent);
         }
     });
 
-    // *** REMOVED Dot Padding Logic ***
-    // The array now contains only the actual events that occurred.
-
-    // Get the name of the current bowler
     const bowlerName = (Number.isInteger(matchData.currentBowler) && matchData.bowlers && matchData.bowlers[matchData.currentBowler])
                        ? matchData.bowlers[matchData.currentBowler].name
-                       : "---"; // Placeholder if no bowler is set
+                       : "---"; 
 
-    // Update the HTML display, joining the events with spaces
     currentOverDisplay.innerHTML = `
         <p>Current Over:</p>
         <p class="over-balls">${currentOverEventsOutput.join(' ')}</p>
@@ -1152,13 +1021,9 @@ function saveMatchData() {
 //It will automatically click on the submit names, without clicking on it manually
 document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        
         if (modal.style.display === 'flex' && modal.contains(event.target)) {
             const submitButton = document.getElementById('submit-names');
-            if (submitButton) {
-                event.preventDefault(); 
-                submitButton.click();
-            }
+            if (submitButton) { event.preventDefault();  submitButton.click();}
         }
     }
 });
@@ -1168,15 +1033,12 @@ document.addEventListener("keydown", function(event) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //This function redirects to the previous page from which ViewScoreCard Btn is clicked
-function goBack() {
-    window.history.back();
-}
+function goBack() { window.history.back();}
 
 function formatOvers(balls) {
     const overs = Math.floor(balls/6);
     const remainingBalls = balls%6;
     return `${overs}.${remainingBalls}`;
-
 }
 
 //This function gets all the necessary data from the localStorage of the browser and stores it in arrays
@@ -1189,9 +1051,7 @@ function loadScorecard() {
     const secondInningsBatters = MatchData.batters || [];
     const firstInningsBowlers = MatchData.firstInningsBowlers || [];
     const secondInningsBowlers = MatchData.bowlers;
-    // const Bowlers = MatchData.bowlers;
-    // const Batters = firstInningsBatters.concat(secondInningsBatters);
-
+    
     const battingData1 = firstInningsBatters || [];
     const bowlingData1 = firstInningsBowlers || [];
     const battingData2 = secondInningsBatters || [];
@@ -1267,7 +1127,7 @@ function loadScorecard() {
 
     //Calling the commentary function
     setupCommentaryHover();
-  }
+}
   
 function setupCommentaryHover() {
     const MatchData = JSON.parse(localStorage.getItem('cricketMatchData'));

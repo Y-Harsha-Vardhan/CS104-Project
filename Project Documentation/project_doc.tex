@@ -64,7 +64,7 @@ and the website will automatically update player and match statistics in real ti
 \end{itemize}
 
 \section{Project Structure}
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{description}
 \item [\texttt{script.js}] --- Contains all JS Logic for the project
 \item [\texttt{setup.html}] --- HTML page for entering the data about the teams
@@ -76,7 +76,6 @@ and the website will automatically update player and match statistics in real ti
 \item [\texttt{summary.html}] --- HTML page for displaying the result at the end of the match 
 \item [\texttt{summary.css}] --- Styling for the summary.html page
 \item [\texttt{Images/}] --- This folder contains the images used in the webpage
-\item [\texttt{Project Documentation/}] --- This folder contains the \LaTeX \hspace*{0.025cm} Documentation
 \item [\texttt{autofill.py}] --- This is a python script that helps to automatically fill the data in the \hspace*{2cm} webpage, here I used this for testing the working of the website.
 \end{description}
 \clearpage
@@ -121,27 +120,89 @@ The following are the screenshots of various pages of the Website:
 \label{summary}
 \end{figure}  
 
-\section{Webpage Features}
-\begin{itemize}
-  \item Setup page allows user to enter team names, toss winner and toss decision for the match [Fig \ref{homepage}].
-  \item Live page allows the user to control the match using buttons and updates the display dynamically [Fig \ref{live-modal}, Fig \ref{live}].
-  \item Scorecard page shows the match commentary, data until that point of the match [Fig \ref{scorecard}].
-  \item Summary page displays the final match result and allows the user to reset the match if required [Fig \ref{summary}].
-\end{itemize}
-
 \section{Basic Features}
-\begin{itemize}
-\item 
-\end{itemize}
+\begin{enumerate}
+\item Setup page allows user to enter team names, toss winner and toss decision \hyperref[homepage]{[Fig 1]}.
+  \begin{itemize}
+  \item This is done using the following functions: \textit{startMatch()}
+  \item Click on this to see more about the above function in detail: \hyperref[basic1]{Setup Page}
+  \end{itemize}
+\item Live page allows the user to control the match using buttons ( [Runs-0,1,2,3,4,6] [Wicket] ) and updates the display (that shows the Strike, Non-Strike Batters, Current Bowler Stats; CRR, RRR and Current Over data) dynamically [Fig \ref{live-modal}, \ref{live}].
+  \begin{itemize}
+  \item This is done using the following functions: \textit{loadMatchData()}, \textit{setUpEventListeners()}, \textit{updateDisplay()} and \textit{promptForPlayerNames()}
+  \item There are other sub-functions also that are called from these main functions, click on this to check out the function flow: \hyperref[flowchart]{FlowChart Representation}
+  \item Click on this to see more about the above functions and sub-functions in detail: \hyperref[basic2]{Live Page}
+  \end{itemize}
+\item Scorecard page shows the match data of all the players until that point of the match in a tabular format \hyperref[scorecard]{[Fig 4]}.
+  \begin{itemize}
+  \item This is done using the following functions: \textit{goBack()}, \textit{formatOvers(balls)}, \textit{loadScoreCard()} and \textit{setupCommentaryHover()}
+  \item Click on this to see more about the above functions in detail: \hyperref[basic3]{Scorecard Page}
+  \end{itemize}
+\item Summary page displays the final match result and allows the user to Reset the match or View Scorecard if required \hyperref[summary]{[Fig 5]}.
+  \begin{itemize}
+  \item This is done using the following functions: \textit{displayResult()} and \textit{setupSummaryPage()}
+  \item Click on this to see more about the above functions in detail: \hyperref[basic4]{Summary Page}
+  \end{itemize}
+\end{enumerate}
 
-\section{Customizations}
-\begin{itemize}
-\item 
-\end{itemize}
+\section{Customizations (Click on the function's names to see more about them:)}
+\begin{enumerate}
+\item Can Set Custom Number of Overs for a Match (by default if nothing is given, it remains 2 per Innings)
+  \begin{itemize}
+  \item For this feature, I added an additional label and input field after the ones required for the Basic Part in the Setup Page Container
+  \item It only accepts numbers, not strings.
+  \item If nothing is entered or an invalid number such as (-1) is entered then it takes 2 as the value.
+  \item It stores this value in the \textit{teamData} object along with the other data.
+  \end{itemize}
+\item Wide, No Ball and Run Out Buttons Functionality 
+  \begin{itemize}
+  \item The Wide Functionality is implemented by: \hyperref[wide]{\textit{addWide()}} 
+  \item The No Ball Functionality is implemented by: \hyperref[noBall1]{\textit{addNoBall()}} and \hyperref[noBall2]{\textit{consumeFreeHitIfNotExtra()}} \\ It shows a Free Hit Indicator after a No Ball and removes it after the next valid delivery
+  \item The Run Out Functionality is implemented by: \hyperref[runOut1]{\textit{promptForRunOut()}} and \hyperref[runOut2]{\textit{processRunOut()}}
+  \end{itemize}
+\item Commentary in Scorecard Page when hovering on a player's stats
+  \begin{itemize}
+  \item This is done using the function: \hyperref[commentaryHover]{\textit{setupCommentaryHover()}}
+  \item It uses (mouseenter) and (mouseleave) EventListeners to show and hide the commentaries
+  \item The commentaries are in the ball-by-ball log format: (Eg: 2.3 Bumrah to Head, 2 runs) 
+  \end{itemize}
+\item Error Handling for the Player Names (preventing duplicate names)
+  \begin{itemize}
+  \item This depends on the functions: \hyperref[error1]{\textit{isDuplicatePlayer()}}, \hyperref[error2]{\textit{showModalError()}}
+  \item The usage of this Customization is to show an Error Message in the Modal, when an Invalid Player's Name is entered
+  \item This message disappears once the User starts typing again.
+  \end{itemize}
+\item An automated Python Script that runs the match
+  \begin{itemize}
+  \item This is written in the file: \texttt{autofill.py} and is based on the Selenium Module in Python
+  \item To Run this file in your device, you need to: SetUp a Driver for your preferred Browser, and Specify the path of the file in your PC.
+  \item This file simulates a match between RCB and CSK (as given as an example in the Problem Statement), it also uses random module to select an action to perform or select a new player's name.
+  \item It stores the names of the players in respective lists of teams and maintains a set which contains the names of the players who have already played and hence prevents the repetition of player names while using random.
+  \item It consists of the following helper functions:
+    \begin{description}
+      \item [\texttt{fill\_starting\_players(batters, bowlers)}]: \\ --- Enters the names of the players in the beginning of an innings
+      \item [\texttt{fill\_new\_batter()}]: \\ --- Enters the name of the next batsman after a Wicket
+      \item [\texttt{fill\_new\_bowler()}]: \\ --- Enters the name of the next bowler after an Over
+      \item [\texttt{click\_action(action)}]: \\ --- Simulates the clicking of the Control Buttons randomly. \\ --- It uses weights to adjust the randomness of a particular clickAction \\ --- It also has a checking mechanism to prevent unnatural scenarios like \hspace*{0.45cm} all Wides or all Wickets in an over \\ --- Currently it ensures that the maximum numbers in an over are: \\ \hspace*{0.45cm} 1 Wide, 1 No Ball, 2 Wickets
+    \end{description}
+  \item This file also prints the output of each ball into the terminal, and requires the User to click the Continue Buttons in the Innings Break and at the End of The Match.
+  \item In the End the Page redirects to the Summary Page, from which you can View the Scorecard or Reset Match before the window closes (Currently it closes 100 seconds after the match has ended)
+  \item The following is a clickable template that will redirect to a video showing this:
+  \end{itemize}
+\end{enumerate}
+\begin{figure}[h]
+  \centering
+  \href{https://drive.google.com/file/d/1Z6U6ZtFrIRRqnZfjVCqRuwvF0Dh_1dh4/view?usp=sharing}{
+    \includegraphics[width=0.6\textwidth]{images/autofillDemo.png}
+  }
+  \caption{Click to watch the AutoFill Demo}
+\end{figure}
+
 
 \section{Functions Used in JS: \textit{score.js}}
 
 \subsection{Setup Page:}
+\label{basic1}
 \subsubsection{\textit{startMatch()}}
 \begin{itemize}
 \item Gets the names of the 2 teams, that are entered by the user and stores them in respective variables.
@@ -155,6 +216,7 @@ The following are the screenshots of various pages of the Website:
 \end{itemize}
 
 \subsection{Live Page:}
+\label{basic2}
 When this page is initialized, an \textit{EventListener} calls: \textit{loadMatchData()} and \textit{setupEventListeners()}, 
 if the match isn't over and players are not yet set up, it calls \textit{promptForPlayerNames()} else it calls \textit{updateDisplay()}.
 \subsubsection{\textit{loadMatchData()}}
@@ -199,6 +261,7 @@ if the match isn't over and players are not yet set up, it calls \textit{promptF
 \end{itemize}
 
 \subsubsection{\textit{showModalError(message)}}
+\label{error2}
 \begin{itemize}
 \item This function takes the argument \textit{message} and displays it on a modal.
 \item It creates an \textit{errorElement} with an id and \textit{textContent} as \textit{message} argument, and it is also styled to make it look like an error.
@@ -228,6 +291,7 @@ It checks for the correctness of the player names entered, and then stores them
 \end{itemize}
 
 \subsubsection{\textit{isDuplicatePlayer(name,team)}}
+\label{error1}
 \begin{itemize}
 \item This function returns a boolean value.
 \item It takes \textit{name} and \textit{team} as arguments and checks if the given name is already used or not.
@@ -308,6 +372,7 @@ It checks for the correctness of the player names entered, and then stores them
 \end{itemize}
 
 \subsubsection{\textit{addWide()}}
+\label{wide}
 \begin{itemize}
 \item This function updates the player data according to a Wide 
 \item It returns (no change) if either: the match is over, all out or \textit{currentBowler} is not properly set (null).
@@ -317,6 +382,7 @@ It checks for the correctness of the player names entered, and then stores them
 \end{itemize}
 
 \subsubsection{\textit{addNoBall()}}
+\label{noBall1}
 \begin{itemize}
 \item This function is implemented a bit differently compared to conventional No Ball in Cricket Matches
 \item It is considered as an extra, and 1 run is awarded to the Batting Team
@@ -327,6 +393,7 @@ It checks for the correctness of the player names entered, and then stores them
 \end{itemize}
 
 \subsubsection{\textit{consumeFreeHitIfNotExtra(isDeliveryExtra)}}
+\label{noBall2}
 \begin{itemize}
 \item This is a helper function that is used to reset the Match Status after the Free Hit is consumed.
 \item It checks if \textit{matchData.isFreeHit} is true, and if \textit{isDeliveryExtra} is false and then sets \textit{matchData.isFreeHit} to false.
@@ -335,38 +402,59 @@ It checks for the correctness of the player names entered, and then stores them
 \end{itemize}
 
 \subsubsection{\textit{promptForRunOut()}}
+\label{runOut1}
 \begin{itemize}
-\item 
+\item It dynamically creates an Modal Prompt for the user to enter the number of runs that the batter scored before he got out and the name of the new batsman
+\item It creates 'Runs scored before out:' and 'New Batter:' labels with their respective input fields and appends them to the modal.
+\item It checks the name of the entered new batsman for validity (using \textit{isDuplicatePlayer()}), and then show error if not. It also takes the default value of Runs Scored to be zero if nothing is entered.
+\item It calls \textit{processRunOut(runs, newBatter)} and then hides the modal when the Submit Button is clicked.
+\item It checks if either the match is not over, not all out, and balls are still left and if all are true then
+\item It checks if it is the end of an over and disables all buttons, calls \textit{showNewBowlerPrompt()} to start the next over incase the Run Out is clicked at the end of one over. 
 \end{itemize}
 
 \subsubsection{\textit{processRunOut(runs,newBatterName)}}
+\label{runOut2}
 \begin{itemize}
-\item 
+\item It takes the \textit{runs} and \textit{newBatterName} as arguments, and makes the necessary changes to update the new batsman into the data.
+\item It returns (no change) if either: the match is over, all out or if \textit{matchData.wickets} >= 10.
+\item It calls the \textit{consumeFreeHitIfNotExtra(false)} and assigns a variable to store the batter object that just got out.
+\item It then adds the runs scored before the Run Out, if any to the batter's scores and updates the bowler's and the total match's stats as well.
+\item It then sets the \textit{matchData.batters[matchData.currentStriker].out} to true and then pushes the new batter object to \textit{matchData.batters} array and sets his index.
+\item It then analyzes the number of runs scored during the run out, to decide which batsman will be the next Strike and Non-Strike batters.
+\item It calls \textit{addCommentary(eventCode,details)}, the details has \textit{runs} and \textit{outBatterName} stored in it.
+\item It then handles over completion if this was the 6th ball and then calls \textit{saveMatchData()} and \textit{updateDisplay()} to update the data in the Live Page. 
 \end{itemize}
 
 \subsubsection{\textit{addCommentary(eventCode,details\{\})}}
 \begin{itemize}
-\item 
+\item This function handles the creation of the \textit{matchData.commentary} that contains all the commentaries in a ball to ball format.
+\item It ensures that the players are set before before adding commentary and returns (no change) if there is any error in that.
+\item It creates objects to store the current batsman at strike and the bowler and checks if they are set correctly.
+\item It then depending on the \textit{eventCode} it recieved as an argument, handles it
+\item For a Wide or a No Ball, it doesn't count it as a legal delivery and uses the current count for them, for the others it uses the previous count as the ball was just added.
+\item It then creates the \textit{description} based on the \textit{eventCode} using a switch-case function and then makes the \textit{commentaryText}
+\item It is of the format: OverIndex BowlerName to BatterName, description and then pushes the commenatry to the \textit{matchData.commentary}.
 \end{itemize}
 
-
 \subsubsection{\textit{updateDisplay()}}
-It just calls the following functions:
+It is just a parent function that calls the following functions:
 \begin{itemize}
-\item \textit{updateScoreDisplay()} 
-\item \textit{updateBattersTable()}
-\item \textit{updateBowlerTable()}
-\item \textit{updateCrrRrr()}
-\item \textit{updateCurrentOver()}
-\item \textit{updateStatusDisplay()}
+\item \textit{updateScoreDisplay()} : Updates the Score Display in the top of the Live Page \hspace*{4.3cm} Container according to the Innings
+\item \textit{updateBattersTable()} : Adds new batsmen, and updates the scores of the batters \hspace*{4.2cm} in the Batter Table
+\item \textit{updateBowlerTable()} : Similar as the above function for Bowlers 
+\item \textit{updateCrrRrr()} : Calculates and then updates the CRR and RRR depending on \hspace*{3.3cm} the Innings
+\item \textit{updateCurrentOver()} : Updates the Current Over section in the Live Page \\ \hspace*{4.1cm} Container using the \textit{matchData.commentary}
+\item \textit{updateStatusDisplay()} : A previous iteration of the Webpage, had this function to \hspace*{4.5cm} show the \textit{statusMessage} 
 \end{itemize}
 
 \hspace{0.5cm}
 
-The \textit {saveMatchData()} function stores the \textit {matchData} object as \textit {cricketMatchData} in the \textit {localStorage} of the Web Browser. \\
+The \textit {saveMatchData ()} function stores the \textit {matchData} object as \textit {cricketMatchData} in the \textit {localStorage} of the Web Browser. \\
 
 In the Live Page, there is an \textit{EventListener} that listens to the click of keys and if there are any message-modals in the page, then the user can just press enter instead of manually clicking the button to submit or continue. 
+
 \subsection{Scorecard Page:}
+\label{basic3}
 For this page there is a small inline script that has an \textit{EventListener}, listening for the \textit{DOMContentLoaded} event.
 It calls the \textit{loadScorecard()} function.
 \subsubsection{\textit{goBack()}}
@@ -388,6 +476,7 @@ This function takes \textit{balls} as an argument and returns a corresponding st
 \end{itemize}
 
 \subsubsection{\textit{setupCommentaryHover()}}
+\label{commentaryHover}
 \begin{itemize}
 \item It extracts the \textit{cricketMatchData} from the \textit{localStorage} and stores it in a local variable \textit{MatchData}
 \item It then groups the commentaries present in the \textit{MatchData.commentary} based on the batter and bowler names, and stores it in 2 maps.
@@ -397,6 +486,7 @@ This function takes \textit{balls} as an argument and returns a corresponding st
 \end{itemize}
 
 \subsection{Summary Page:}
+\label{basic4}
 For this page, there is a small inline-script that is present in the HTML file itself \\
 It calls the following functions: \textit{loadMatchData()}, \textit{displayResult()} and \\ \textit{setupSummaryPage()}.
 \subsubsection{\textit{displayResult()}}
@@ -426,8 +516,8 @@ It calls the following functions: \textit{loadMatchData()}, \textit{displayResul
 \section{References}
 \begin{itemize}
   \item \texttt{Background Images:} \url{www.wallpaperflare.com}
-  \item \url{https://www.espncricinfo.com}
-  \item \url{https://developer.mozilla.org}
+  \item \texttt{General AI Chat:} \url{https://chatgpt.com/share/6810c68c-5d30-800b-84c0-c59a2974420f}
+  \item \texttt{Design Inspiration:} \url{https://www.espncricinfo.com/} 
 \end{itemize}
 
 \end{document}

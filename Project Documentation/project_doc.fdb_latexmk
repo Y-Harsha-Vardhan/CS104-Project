@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1745759573.69631 "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" "project_doc.pdf" "project_doc" 1745759579.26011 0
+["pdflatex"] 1745929915.31347 "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" "project_doc.pdf" "project_doc" 1745929922.75836 0
   "C:/Users/yhars/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1744632860 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/yhars/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1744117016 14064 8b957cab022227e4646854519a6004de ""
   "C:/Users/yhars/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1744116286 12036088 6343920b6fa54c2e57337c9318997df8 ""
@@ -23,7 +23,6 @@
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1247596667 36554 b67dc2cfa451409e100b3fcf5f506509 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
-  "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247596667 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1247596666 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
@@ -142,17 +141,18 @@
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/yhars/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" 1745759568 25049 6e0ea72be508c4318d3b4223e1a132c3 ""
+  "c:/Users/yhars/CODE/CS104-Project/Project Documentation/project_doc.tex" 1745929914 34576 88bf67a5d353c77006ee332771f7bc0f ""
+  "images/autofillDemo.png" 1745928822 2781677 db6879a5f767c79fa22d528dde373951 ""
   "images/flowchart.png" 1744974583 179676 be2bc788e2ccd9411503795c855f0ea4 ""
   "images/homepage.png" 1745405001 5918690 89d1e803f4881b46fdf240e465d05c37 ""
   "images/live-modal.png" 1744227082 4204891 a9a94aed5cd4b0add9ceb31f1cb57cf2 ""
   "images/live.png" 1745405155 6258768 242348abc00b17f25be0860a20e87816 ""
   "images/scorecard.png" 1745405293 5309947 401bb1227e88bfa1d3bc7712746f4fba ""
   "images/summary.png" 1744227208 6102958 a8d53a1f32dd7f61d0b20aaaebe32d2c ""
-  "project_doc.aux" 1745759579 7629 85706f441c0c56c3f51933e5feb403b5 "pdflatex"
-  "project_doc.out" 1745759579 7069 233a9000c9271d2fde9235c98201f0c2 "pdflatex"
-  "project_doc.tex" 1745759568 25049 6e0ea72be508c4318d3b4223e1a132c3 ""
-  "project_doc.toc" 1745759579 4269 a9e2ededcd00226bd1d135d682e4fc62 "pdflatex"
+  "project_doc.aux" 1745929922 8693 60e1c3526ca326bc26693269b0aefdb6 "pdflatex"
+  "project_doc.out" 1745929922 7257 66d769e8d6d44644f1affb4274480b03 "pdflatex"
+  "project_doc.tex" 1745929914 34576 88bf67a5d353c77006ee332771f7bc0f ""
+  "project_doc.toc" 1745929922 4255 f2bfc49e5f185229febf7de07b515287 "pdflatex"
   (generated)
   "project_doc.aux"
   "project_doc.log"
