@@ -16,7 +16,6 @@ driver.get("file:///C:/Users/yhars/CODE/CS104-Project/setup.html")
 wait = WebDriverWait(driver, 10)
 
 #=== Filling Setup Page ===
-time.sleep(30)
 team1_name = driver.find_element(By.ID, "team1")
 team2_name = driver.find_element(By.ID, "team2")
 toss_winner = Select(driver.find_element(By.ID, "toss-winner"))
