@@ -5,9 +5,12 @@
 \usepackage{geometry}
 % This is used for hiding the red-color border boxes appearing on the hyperlink in the Table Of Contents in the previous version
 \usepackage[hidelinks]{hyperref}
-% This is used for drawing FlowChart Representation of Function Calls in script.js 
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
 % This is used for adding a header and footer to these pages
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -21,11 +24,6 @@
 
 % This is a command from the geometry package that is used to customize the margin 
 \geometry{margin=1in}
-% This is for setting up the styles to be used in the flowchart
-\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
-\tikzstyle{decision} = [diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
-\tikzstyle{arrow} = [thick,->,>=stealth]
 
 % This block contains the Title, and information regarding the author of this Document
 \title{\textbf{Cricket Webpage Project Documentation}}
@@ -67,7 +65,7 @@ and the website will automatically update player and match statistics in real ti
 \vspace{0.3cm}
 \begin{description}
 \item [\texttt{script.js}] --- Contains all JS Logic for the project
-\item [\texttt{setup.html}] --- HTML page for entering the data about the teams
+\item [\texttt{setup.html}] --- HTML page for entering the data about the teams (similar to index.html)
 \item [\texttt{setup.css}] --- Styling for the setup.html page
 \item [\texttt{live.html}] --- HTML page for controlling and viewing the score of the match
 \item [\texttt{live.css}] --- Styling for the live.html page
@@ -75,7 +73,7 @@ and the website will automatically update player and match statistics in real ti
 \item [\texttt{scorecard.css}] --- Styling for the scorecard.html page 
 \item [\texttt{summary.html}] --- HTML page for displaying the result at the end of the match 
 \item [\texttt{summary.css}] --- Styling for the summary.html page
-\item [\texttt{Images/}] --- This folder contains the images used in the webpage
+\item [\texttt{Images/}] --- This folder contains the background images used in the webpage
 \item [\texttt{autofill.py}] --- This is a python script that helps to automatically fill the data in the \hspace*{2cm} webpage, here I used this for testing the working of the website.
 \end{description}
 \clearpage
@@ -135,7 +133,7 @@ The following are the screenshots of various pages of the Website:
   \end{itemize}
 \item Scorecard page shows the match data of all the players until that point of the match in a tabular format \hyperref[scorecard]{[Fig 4]}.
   \begin{itemize}
-  \item This is done using the following functions: \textit{goBack()}, \textit{formatOvers(balls)}, \textit{loadScoreCard()} and \textit{setupCommentaryHover()}
+  \item This is done using the following functions: \textit{goBack()}, \textit{formatOvers(balls)} and \textit{loadScoreCard()}
   \item Click on this to see more about the above functions in detail: \hyperref[basic3]{Scorecard Page}
   \end{itemize}
 \item Summary page displays the final match result and allows the user to Reset the match or View Scorecard if required \hyperref[summary]{[Fig 5]}.
@@ -147,7 +145,7 @@ The following are the screenshots of various pages of the Website:
 
 \section{Customizations (Click on the function's names to see more about them:)}
 \begin{enumerate}
-\item Can Set Custom Number of Overs for a Match (by default if nothing is given, it remains 2 per Innings)
+\item Can set Custom Number of Overs for a Match (by default if nothing is given, it remains 2 per Innings)
   \begin{itemize}
   \item For this feature, I added an additional label and input field after the ones required for the Basic Part in the Setup Page Container
   \item It only accepts numbers, not strings.
@@ -168,13 +166,13 @@ The following are the screenshots of various pages of the Website:
   \end{itemize}
 \item Error Handling for the Player Names (preventing duplicate names)
   \begin{itemize}
-  \item This depends on the functions: \hyperref[error1]{\textit{isDuplicatePlayer()}}, \hyperref[error2]{\textit{showModalError()}}
+  \item This is done using the functions: \hyperref[error1]{\textit{isDuplicatePlayer()}}, \hyperref[error2]{\textit{showModalError()}}
   \item The usage of this Customization is to show an Error Message in the Modal, when an Invalid Player's Name is entered
   \item This message disappears once the User starts typing again.
   \end{itemize}
 \item An automated Python Script that runs the match
   \begin{itemize}
-  \item This is written in the file: \texttt{autofill.py} and is based on the Selenium Module in Python
+  \item This is written in the file: \texttt{autofill.py} and uses the selenium module in Python
   \item To Run this file in your device, you need to: SetUp a Driver for your preferred Browser, and Specify the path of the file in your PC.
   \item This file simulates a match between RCB and CSK (as given as an example in the Problem Statement), it also uses random module to select an action to perform or select a new player's name.
   \item It stores the names of the players in respective lists of teams and maintains a set which contains the names of the players who have already played and hence prevents the repetition of player names while using random.
@@ -183,7 +181,7 @@ The following are the screenshots of various pages of the Website:
       \item [\texttt{fill\_starting\_players(batters, bowlers)}]: \\ --- Enters the names of the players in the beginning of an innings
       \item [\texttt{fill\_new\_batter()}]: \\ --- Enters the name of the next batsman after a Wicket
       \item [\texttt{fill\_new\_bowler()}]: \\ --- Enters the name of the next bowler after an Over
-      \item [\texttt{click\_action(action)}]: \\ --- Simulates the clicking of the Control Buttons randomly. \\ --- It uses weights to adjust the randomness of a particular clickAction \\ --- It also has a checking mechanism to prevent unnatural scenarios like \hspace*{0.45cm} all Wides or all Wickets in an over \\ --- Currently it ensures that the maximum numbers in an over are: \\ \hspace*{0.45cm} 1 Wide, 1 No Ball, 2 Wickets
+      \item [\texttt{click\_action(action)}]: \\ --- Simulates the clicking of the Control Buttons randomly. \\ --- It uses weights to adjust the randomness of a particular click action \\ --- It also has a checking mechanism to prevent unnatural scenarios like \hspace*{0.45cm} all Wides or all Wickets in an over \\ --- Currently it ensures that the extreme cases in an over are: \\ \hspace*{0.45cm} 1 Wide, 1 No Ball, 2 Wickets
     \end{description}
   \item This file also prints the output of each ball into the terminal, and requires the User to click the Continue Buttons in the Innings Break and at the End of The Match.
   \item In the End the Page redirects to the Summary Page, from which you can View the Scorecard or Reset Match before the window closes (Currently it closes 100 seconds after the match has ended)
@@ -365,7 +363,7 @@ It checks for the correctness of the player names entered, and then stores them
 \item It calls \textit{consumeFreeHitExtra(false)} which will remove any Free Hit Indicator message in the Live Match Display.
 \item It sets the \textit{currentStriker} to out and calls \textit{addCommentary('W')} function
 \item It then checks for end of match or innings and if true, then calls \textit{saveMatchData(), updateDisplay()}.
-\item If \textit{matchData.wickets < 10} then calls \textit{showNewBatterPrompt()} else it sets \textit{matchData.allOut} to true.
+\item If \textit{matchData.wickets $<$ 10} then calls \textit{showNewBatterPrompt()} else it sets \textit{matchData.allOut} to true.
 \item It checks for End of Over, and swaps the \textit{currentStriker} and \textit{nonStriker}, updates the bowler stats and calls \textit{showNewBowlerPrompt()}
 \item It then adds the new bowler to the list of bowlers in \textit{matchData.bowlers}
 \item It finally calls \textit{saveMatchData()} and \textit{updateDisplay()} to update changes.
@@ -416,7 +414,7 @@ It checks for the correctness of the player names entered, and then stores them
 \label{runOut2}
 \begin{itemize}
 \item It takes the \textit{runs} and \textit{newBatterName} as arguments, and makes the necessary changes to update the new batsman into the data.
-\item It returns (no change) if either: the match is over, all out or if \textit{matchData.wickets} >= 10.
+\item It returns (no change) if either: the match is over, all out or if \textit{matchData.wickets} $>=$ 10.
 \item It calls the \textit{consumeFreeHitIfNotExtra(false)} and assigns a variable to store the batter object that just got out.
 \item It then adds the runs scored before the Run Out, if any to the batter's scores and updates the bowler's and the total match's stats as well.
 \item It then sets the \textit{matchData.batters[matchData.currentStriker].out} to true and then pushes the new batter object to \textit{matchData.batters} array and sets his index.
@@ -515,9 +513,9 @@ It calls the following functions: \textit{loadMatchData()}, \textit{displayResul
 
 \section{References}
 \begin{itemize}
-  \item \texttt{Background Images:} \url{www.wallpaperflare.com}
-  \item \texttt{General AI Chat:} \url{https://chatgpt.com/share/6810c68c-5d30-800b-84c0-c59a2974420f}
-  \item \texttt{Design Inspiration:} \url{https://www.espncricinfo.com/} 
+  \item \texttt{Background Images:} \href{www.wallpaperflare.com}{\texttt{Wallpaperflare}}
+  \item \texttt{General AI Chat:} \href{https://chatgpt.com/share/6810c68c-5d30-800b-84c0-c59a2974420f}{\texttt{ChatGPT}}
+  \item \texttt{Design Inspiration:} \href{https://www.espncricinfo.com/}{\texttt{CricInfo}} 
 \end{itemize}
 
 \end{document}
